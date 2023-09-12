@@ -8,6 +8,7 @@ const getAllTasks = asyncHandler(async(req, res) => {
         res.status(200).json(tasks)
     } catch (error){
         res.status(500)
+        throw new Error (error.message)
     }
 })
 
@@ -18,6 +19,8 @@ const getTask = asyncHandler (async (req, res) => {
         res.status(200).json (tasks)
     } catch (error){
         res.status (500);
+        throw new Error (error.message)
+        
     }
 
 })
@@ -28,6 +31,7 @@ const createTask = asyncHandler (async (req, res) => {
         res.status(200).json(tasks)
     } catch (error){
         res.status (500)
+        throw new Error (error.message)
     }
 })
 
@@ -39,6 +43,7 @@ const updateTask = asyncHandler (async (req, res) => {
         res.status(200).json(updatedTask)
     } catch (error){
         res.status (500);
+        throw new Error (error.message)
     }
 })
 
@@ -49,6 +54,7 @@ const deleteTask = asyncHandler (async (req, res) => {
         res.status(200).json(tasks)
     } catch (error){
         res.status (500);
+        throw new Error (error.message)
     }
 
 })

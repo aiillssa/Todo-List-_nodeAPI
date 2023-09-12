@@ -6,12 +6,18 @@ const mongoose = require('mongoose')
 const app = express();
 const Task = require ('./models/task')
 const routes = require ('./routes/todolistRoutes')
+const errorMiddleware = require ('./middleware/errorMiddleware')
 //Env constants
 const MONGO_URI = process.env.MONGO_URI
 const PORT = process.env.PORT
+//CORS const
+const cors = require ('cors')
 
 //JSON middleware
 app.use (express.json())
+
+//CORS middleware
+app.use (cors())
 
 //Connect to DB
 //strictQuery defines how to handle fields that aren't defined in the schema
@@ -28,3 +34,6 @@ mongoose.connect(MONGO_URI)
 })
 
 app.use ('/', routes)
+
+//error middleware, put it after bc the error comes after the routes run
+app.use (errorMiddleware)

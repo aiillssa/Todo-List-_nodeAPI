@@ -7,8 +7,7 @@ const getAllTasks = asyncHandler(async(req, res) => {
         const tasks = await Task.find({})
         res.status(200).json(tasks)
     } catch (error){
-        res.status(500)
-        throw new Error (error.message)
+        processError(error, res);
     }
 })
 
@@ -18,8 +17,9 @@ const getTask = asyncHandler (async (req, res) => {
         const tasks = await Task.findById(id)
         res.status(200).json (tasks)
     } catch (error){
-        res.status (500);
-        throw new Error (error.message)
+        // res.status (500);
+        // throw new Error (error.message);
+        processError(error, res);
         
     }
 
@@ -30,8 +30,7 @@ const createTask = asyncHandler (async (req, res) => {
         const tasks = await Task.create(req.body)
         res.status(200).json(tasks)
     } catch (error){
-        res.status (500)
-        throw new Error (error.message)
+        processError(error, res);
     }
 })
 
@@ -42,8 +41,7 @@ const updateTask = asyncHandler (async (req, res) => {
         const updatedTask = await Task.findById(id)
         res.status(200).json(updatedTask)
     } catch (error){
-        res.status (500);
-        throw new Error (error.message)
+        processError(error, res);
     }
 })
 
@@ -53,11 +51,15 @@ const deleteTask = asyncHandler (async (req, res) => {
         const tasks = await Task.findByIdAndDelete(id)
         res.status(200).json(tasks)
     } catch (error){
-        res.status (500);
-        throw new Error (error.message)
+        processError(error, res);
     }
 
 })
+
+const processError = (error, res) => {
+    res.status (500);
+    throw new Error (error.message)
+}
 
 module.exports = {
     getAllTasks,

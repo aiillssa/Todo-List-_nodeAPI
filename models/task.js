@@ -8,6 +8,11 @@ const taskSchema = mongoose.Schema(
         date: {
             type: Date, 
             required: false,
+        },
+        class: {
+            type: String, 
+            required: false,
+            default: "n/a"
         }
     }
 )

@@ -9,7 +9,7 @@ const taskSchema = mongoose.Schema(
             type: Date, 
             required: false,
         },
-        className: {
+        nameClass: {
             type: String, 
             required: false,
             default: "n/a"
